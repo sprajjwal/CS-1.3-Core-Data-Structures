@@ -17,12 +17,17 @@ def decode(digits, base):
     return: int -- integer representation of number (in base 10)"""
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
-    # TODO: Decode digits from binary (base 2)
-    # ...
-    # TODO: Decode digits from hexadecimal (base 16)
-    # ...
-    # TODO: Decode digits from any base (2 up to 36)
-    # ...
+    
+    sum = 0
+    for ind in range(len(digits)):
+        if digits[ind].isalpha():
+            val = string.ascii_lowercase.index(digits[ind].lower()) + 10
+        else:
+            val = int(digits[ind])
+        sum += val * (base ** (len(digits) - ind - 1))
+    return sum
+            
+
 
 
 def encode(number, base):
@@ -33,13 +38,15 @@ def encode(number, base):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # Handle unsigned numbers only for now
-    assert number >= 0, 'number is negative: {}'.format(number)
-    # TODO: Encode number in binary (base 2)
-    # ...
-    # TODO: Encode number in hexadecimal (base 16)
-    # ...
-    # TODO: Encode number in any base (2 up to 36)
-    # ...
+    ret_str = '' # empty string to fill with converted value
+    while number != 0: # uses remainder method to encode
+        rem = int(number % base)
+        number -= rem 
+        number = number / base 
+        if rem > 9:
+            rem = string.ascii_lowercase[rem-10]
+        ret_str = str(rem) + ret_str
+    return ret_str
 
 
 def convert(digits, base1, base2):
@@ -59,6 +66,9 @@ def convert(digits, base1, base2):
     # ...
     # TODO: Convert digits from any base to any base (2 up to 36)
     # ...
+    string = decode(digits, base1)
+    return encode(string, base2)
+
 
 
 def main():
@@ -78,4 +88,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # print(decode('1f', 16))
+    # print(encode(45, 2))
