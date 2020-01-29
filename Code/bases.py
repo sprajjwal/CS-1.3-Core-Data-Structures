@@ -38,11 +38,13 @@ def encode(number, base):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # Handle unsigned numbers only for now
+    assert number >= 0, 'number is negative: {}'.format(number)
+    
     ret_str = '' # empty string to fill with converted value
-    while number != 0: # uses remainder method to encode
-        rem = int(number % base)
+    while number > 0: # uses remainder method to encode
+        rem = number % base
         number -= rem 
-        number = number / base 
+        number = number // base 
         if rem > 9:
             rem = string.ascii_lowercase[rem-10]
         ret_str = str(rem) + ret_str
@@ -58,14 +60,6 @@ def convert(digits, base1, base2):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base1 <= 36, 'base1 is out of range: {}'.format(base1)
     assert 2 <= base2 <= 36, 'base2 is out of range: {}'.format(base2)
-    # TODO: Convert digits from base 2 to base 16 (and vice versa)
-    # ...
-    # TODO: Convert digits from base 2 to base 10 (and vice versa)
-    # ...
-    # TODO: Convert digits from base 10 to base 16 (and vice versa)
-    # ...
-    # TODO: Convert digits from any base to any base (2 up to 36)
-    # ...
     string = decode(digits, base1)
     return encode(string, base2)
 
@@ -89,4 +83,4 @@ def main():
 
 if __name__ == '__main__':
     # print(decode('1f', 16))
-    # print(encode(45, 2))
+    print(encode(45, 2))
