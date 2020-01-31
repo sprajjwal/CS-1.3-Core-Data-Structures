@@ -4,8 +4,7 @@ def contains(text, pattern):
     """Return a boolean indicating whether pattern occurs in text."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement contains here (iteratively and/or recursively)
-
+    return find_all_indexes(text, pattern, False) != None
 
 def find_index(text, pattern):
     """Return the starting index of the first occurrence of pattern in text,
@@ -13,14 +12,37 @@ def find_index(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement find_index here (iteratively and/or recursively)
+    return find_all_indexes(text, pattern, False)
+    
 
 
-def find_all_indexes(text, pattern):
+def find_all_indexes(text, pattern, flag=True):
     """Return a list of starting indexes of all occurrences of pattern in text,
     or an empty list if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement find_all_indexes here (iteratively and/or recursively)
+    if flag:
+        if pattern == '':
+            return [i for i in range(len(text))]
+        else:
+            arr = []
+    for i in range(len(text) - len(pattern) + 1):
+        for j in range(len(pattern)):
+            if text[i + j] != pattern[j]:
+                break
+        else:
+            if flag:
+                arr.append(i)
+            else:
+                return i
+    if flag:
+        return arr
+    else:
+        return None
+    
+    
+    
 
 
 def test_string_algorithms(text, pattern):
