@@ -13,6 +13,7 @@ def factorial(n):
 
 
 def factorial_iterative(n):
+    """ Avg case: o(n)"""
     product = 1
     for i in range(1, n+1):
         product *= i
@@ -20,6 +21,7 @@ def factorial_iterative(n):
 
 
 def factorial_recursive(n):
+    """ Avg case: O(n)"""
     # check if n is one of the base cases
     if n == 0 or n == 1:
         return 1
