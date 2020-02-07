@@ -41,7 +41,8 @@ class LinkedQueue(object):
     def dequeue(self):
         """Remove and return the item at the front of this queue,
         or raise ValueError if this queue is empty.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1)because deleting from head costs
+        constant time"""
         if self.is_empty():
             raise ValueError('Stack is Empty')
         item = self.front()
