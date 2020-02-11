@@ -21,21 +21,21 @@ class LinkedStack(object):
 
     def is_empty(self):
         """Return True if this stack is empty, or False otherwise."""
-        return self.list.size == 0
+        return self.list.length() == 0
 
     def length(self):
         """Return the number of items in this stack."""
-        return self.list.size
+        return self.list.length()
 
     def push(self, item):
         """Insert the given item on the top of this stack.
         Running time: O(1) because we have access to tail pointer"""
-        self.list.append(item)
+        self.list.prepend(item)
 
     def peek(self):
         """Return the item on the top of this stack without removing it,
         or None if this stack is empty."""
-        return self.list.get_at_index(self.length() - 1) if not self.is_empty() else None
+        return self.list.get_at_index(0) if not self.is_empty() else None
 
     def pop(self):
         """Remove and return the item on the top of this stack,
