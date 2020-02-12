@@ -77,12 +77,12 @@ class ArrayQueue(object):
         """Insert the given item at the back of this queue.
         Running time: O(1) – because inserting at the end 
         costs constant time"""
-        self.list.append(item)
+        self.list.insert(0, item)
 
     def front(self):
         """Return the item at the front of this queue without removing it,
         or None if this queue is empty."""
-        return self.list[0] if not self.is_empty() else None
+        return self.list[len(self.list) - 1] if not self.is_empty() else None
 
     def dequeue(self):
         """Remove and return the item at the front of this queue,
@@ -91,7 +91,7 @@ class ArrayQueue(object):
         we remove item from 0th index"""
         if self.is_empty():
             raise ValueError('Stack is Empty')
-        return self.list.pop(0)
+        return self.list.pop(len(self.list) - 1)
 
 
 # Implement LinkedQueue and ArrayQueue above, then change the assignment below
