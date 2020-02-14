@@ -129,6 +129,8 @@ class HashTable(object):
             # Remove the key-value entry from the bucket
             bucket.delete(entry)
             self.size -= 1
+            if self.load_factor() < 0.15:
+                self._resize(0)
         else:  # Not found
             raise KeyError('Key not found: {}'.format(key))
 
@@ -136,14 +138,14 @@ class HashTable(object):
         """Resize this hash table's buckets and rehash all key-value entries.
         Should be called automatically when load factor exceeds a threshold
         such as 0.75 after an insertion (when set is called with a new key).
-        Best and worst case running time: ??? under what conditions? [TODO]
-        Best and worst case space usage: ??? what uses this memory? [TODO]"""
+        Best and worst case running time: O(n) since every item has to be copied over
+        Best and worst case space usage: O(n+2b) since we make/delete new buckets and items for node"""
         # If unspecified, choose new size dynamically based on current size
         if new_bucket_size is None:
             new_bucket_size = len(self.buckets) * 2  # Double size
         # Option to reduce size if buckets are sparsely filled (low load factor)
         elif new_bucket_size is 0:
-            new_bucket_size = len(self.buckets) / 2  # Half size
+            new_bucket_size = len(self.buckets) // 2  # Half size
 
         items = self.items()
         self.buckets = [LinkedList() for i in range(new_bucket_size)]
