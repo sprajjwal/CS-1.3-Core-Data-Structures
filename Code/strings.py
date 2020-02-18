@@ -2,7 +2,8 @@
 
 def contains(text, pattern):
     """Return a boolean indicating whether pattern occurs in text.
-        Best case: O(1); worst case: O(n)
+        Time: Best case: O(1); worst case: O(n)
+        Space: Best Case: O(1) when pattern not found, O(n) when the whole string matches
     """
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
@@ -11,7 +12,8 @@ def contains(text, pattern):
 def find_index(text, pattern):
     """Return the starting index of the first occurrence of pattern in text,
     or None if not found.
-    Best case: O(1); worst case: O(n)
+    Time: Best case: O(1); worst case: O(n)
+    Space: Best Case: O(1) when pattern not found, O(n) when the whole string matches
     """
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
@@ -23,11 +25,11 @@ def find_index(text, pattern):
 def find_all_indexes(text, pattern, flag=True):
     """Return a list of starting indexes of all occurrences of pattern in text,
     or an empty list if not found.
-    Best case: O(1); worst case: O(n)
+    Time: Best case: O(1); worst case: O(n)
+    Space: Best Case: O(1) when pattern not found, O(n) when the whole string matches
     """
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement find_all_indexes here (iteratively and/or recursively)
 
     # return [i for i in range(len(text) - len(pattern) + 1) if not any(i for j in range(len(pattern)) if text[i + j] != pattern[j])]
 

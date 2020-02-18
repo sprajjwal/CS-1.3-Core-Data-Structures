@@ -28,7 +28,7 @@ class SearchTest(unittest.TestCase):
 
     def test_binary_search_with_items_in_list(self):
         # binary search requires list values to be in sorted order
-        names = ['Alex', 'Brian', 'Julia', 'Kojin', 'Nabil', 'Nick', 'Winnie', 'shaash']
+        names = ['Alex', 'Brian', 'Julia', 'Kojin', 'Nabil', 'Nick', 'Winnie', 'Shaash']
         # binary search should return the index of each item in the list
         assert binary_search(names, 'Alex') == 0
         assert binary_search(names, 'Brian') == 1
