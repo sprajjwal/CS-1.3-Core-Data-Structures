@@ -225,7 +225,7 @@ class BinarySearchTree(object):
         """Traverse this binary tree with recursive in-order traversal (DFS).
         Start at the given node and visit each node with the given function.
         Running time: O(n) since there are n nodes
-        Memory usage: O(n) since item from every node is being added to array"""
+        Memory usage: O(h) since item from every node at the same height is being added to call stack"""
         if node is not None:
             # Traverse left subtree, if it exists
             self._traverse_in_order_recursive(node.left, visit)
@@ -258,7 +258,7 @@ class BinarySearchTree(object):
         """Traverse this binary tree with recursive pre-order traversal (DFS).
         Start at the given node and visit each node with the given function.
         Running time: O(n) since there are n nodes
-        Memory usage: O(n) since item from every node is being added to array"""
+        Memory usage: O(h) since item from every node at the same height is being added to call stack"""
         #  Visit this node's data with given function
         if node is not None:
             visit(node.data)
@@ -287,7 +287,7 @@ class BinarySearchTree(object):
         """Traverse this binary tree with recursive post-order traversal (DFS).
         Start at the given node and visit each node with the given function.
         Running time: O(n) since there are n nodes
-        Memory usage: O(n) since item from every node is being added to array"""
+        Memory usage: O(h) since item from every node at the same height is being added to call stack"""
         if node is not None:
             # Traverse left subtree, if it exists
             self._traverse_post_order_recursive(node.left, visit)
@@ -316,7 +316,7 @@ class BinarySearchTree(object):
         """Traverse this binary tree with iterative level-order traversal (BFS).
         Start at the given node and visit each node with the given function.
         Running time: O(n) since there are n nodes
-        Memory usage: O(n) since item from every node is being added to array"""
+        Memory usage: O(2^depth) since item from every node is being added to queue"""
         # Create queue to store nodes not yet traversed in level-order
         queue = Queue()
         # Enqueue given starting node
