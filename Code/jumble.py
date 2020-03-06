@@ -62,7 +62,11 @@ def jumble(scrams, pick, word_counts):
     unscram = unscramble( scram)
     unscrambled.append(unscram)
   
-  print(unscrambled)
+  print("Unscrambling done: ")
+  for i in range(len(scrams)):
+    print(f"{scrams[i]}: {unscrambled[i]}")
+
+  print("-------------------------------------------------------")
   final_scramble = []
 
   for i in range(len(pick)):
@@ -78,20 +82,23 @@ def jumble(scrams, pick, word_counts):
           new.append(final_scramble_items + tba)
     final_scramble = new
       
-      
+  print("Possible Scramble words are: ", end="")
   print(final_scramble)
+  print("-------------------------------------------------------")
   return unscramble(final_scramble, word_counts)
 
 if __name__ == "__main__":
-  scrams = ['LAISA', 'LAURR', 'BUREEK', 'PROUOT']
-  pick = [[1, 2, 3], [0, 2], [0, 1], [2, 4, 5]]
-  word_counts = [5, 5]
+  scrams = ['AULFW', 'KIDNR', 'SEWBOT', 'XEOPES']
+  pick = [[0, 1], [0, 4], [2, 3, 4], [4, 5]]
+  word_counts = [3, 6]
   options = jumble(scrams, pick, word_counts)
-
-  for item in options:
-    print("solution found: ", end="")
-    for word in item:
-      print(word, end=" ")
-    print()
+  if len(options) == 0: 
+    print("No solutions from ENGLISH Dictionary were found")
+  else: 
+    for item in options:
+      print("solution found: ", end="")
+      for word in item:
+        print(word, end=" ")
+      print()
 
   
